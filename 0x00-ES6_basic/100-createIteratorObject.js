@@ -5,11 +5,13 @@ export default function createIteratorObject(report) {
   });
   return {
     [Symbol.iterator]: () => {
-      const index = 0;
+      let index = 0;
       return {
         next: () => {
           if (index < data.length) {
-            return { value: data[index + 1], done: false };
+            const value = data[index];
+            index += 1;
+            return { value, done: false };
           }
           return { done: true };
         },
