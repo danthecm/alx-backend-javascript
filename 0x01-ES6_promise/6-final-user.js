@@ -8,9 +8,9 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
   ]).then((value) => {
     const result = [];
     value.forEach((res) => {
-      if (res.status !== 'fulfilled') {
+      if (res.status === 'rejected') {
         const { status, reason } = res;
-        result.push({ status, value: reason });
+        result.push({ status, value: `Error: ${reason.message}` });
         return;
       }
       result.push(res);
